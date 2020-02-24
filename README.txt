@@ -1,0 +1,1 @@
+Ensure mod files are compiled prior to first run with "nrnivmodl" (Mac OS/Unix) or using the Windows GUI. See https://neuron.yale.edu/neuron/faq for help.
