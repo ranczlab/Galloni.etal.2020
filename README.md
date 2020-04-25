@@ -1,4 +1,4 @@
-# Galloni.etal.2020
+# Models of length-dependent Ca<sup>2+</sup> electrogenesis in layer 5 pyramidal neurons
 
 Files for the submission Galloni et al 2020 including code to reproduce major figures featuring models of L5 neuronal biophysics.
 
