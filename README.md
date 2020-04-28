@@ -3,6 +3,7 @@
 Files for the submission Galloni et al 2020 including code to reproduce major figures featuring models of L5 neuronal biophysics.
 
 The code is split between three folders: 
+
 The "Experimental data analysis" folder contains code experimental data and scripts for generating figures 1 and 2 (and related supplementary figures). The scripts were written for MATLAB R2018a.
 
 The "Bahl" folder contains code for the reduced model based on the same by Bahl et al. (2012). Most figures related to the reduced model are reproducible through the Python scripts (running Python 3.6).
