@@ -2,6 +2,9 @@
 
 Files for the submission Galloni et al 2020 including code to reproduce major figures featuring models of L5 neuronal biophysics.
 
-Code is split between two folders. The Hay folder contains code for the morphologically realistic model based on the original by Hay et al. The Bahl folder contains code for the reduced model based on the same by Bahl et al.
+The code is split between three folders: 
+The "Experimental data analysis" folder contains code experimental data and scripts for generating figures 1 and 2 (and related supplementary figures). The scripts were written for MATLAB R2018a.
 
-Though most figures are reproducible through Python scripts, those concerning the Hay model require manual editing of the base files associated with the model. A full account of parameters used is available in the submission.
+The "Bahl" folder contains code for the reduced model based on the same by Bahl et al. (2012). Most figures related to the reduced model are reproducible through the Python scripts (running Python 3.6).
+
+The "Hay" folder contains code for the detailed (morphologically realistic) model based on the original by Hay et al. (2011). Figures related to the detailed model require manual editing of the base files associated with the model in order to fully reproduce the figures in the paper. A full account of parameters used is available in the submission.
