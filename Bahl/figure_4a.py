@@ -2,7 +2,6 @@ from neuron import h
 from matplotlib import pyplot as plt
 import numpy as np
 
-
 def measure_width(trace):
     trace = np.array(trace)
 
@@ -71,4 +70,4 @@ axes[0, 0].set_ylim(-80, 60)
 axes[1, 0].set_ylim(-80, 60)
 axes[2, 0].set_ylim(-1, 8)
 
-plt.show()
+plt.savefig('outputs/figures/figure_4a.svg')

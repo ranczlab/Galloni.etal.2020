@@ -2,7 +2,6 @@ from neuron import h
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 def measure_width(trace):
     trace = np.array(trace)
 
@@ -51,11 +50,11 @@ for i in range(l.size):
 
     h.apical.L = l[i]
 
-    h('recalculate_passive_properties()')
-    h('recalculate_channel_densities()')
-    h('recalculate_geometry()')
-
     for j in range(Ih.size):
+        
+        h('recalculate_passive_properties()')
+        h('recalculate_channel_densities()')
+        h('recalculate_geometry()')
 
         for seg in h.tuft:
             seg.gbar_ih = seg.gbar_ih * Ih[j]
@@ -89,10 +88,7 @@ for i in range(l.size):
                                         dx=0.025)
         integral[1, 1, i, j] = np.trapz(((np.array(tuft_v_vec)[20000:25000] - tuft_v_vec[15000]) / 10 ** 6), dx=0.025)
 
-        h('recalculate_passive_properties()')
-        h('recalculate_channel_densities()')
-        h('recalculate_geometry()')
-
+print(integral.shape)
 trunk_colors = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c']
 tuft_colors = ['#fee5d9', '#fcae91', '#fb6a4a', '#de2d26', '#a50f15']
 
@@ -119,8 +115,9 @@ for i in range(Ih.size):
 
 axes[0, 0].set_ylabel('peak voltage (mV)')
 axes[1, 0].set_ylabel('width (ms)')
-axes[2, 0].set_ylabel('integral (V·s)')
+axes[2, 0].set_ylabel('integral (Vs)')
 
 axes[0, 0].set_ylim(-80, 20)
 axes[1, 0].set_ylim(0, 120)
 axes[2, 0].set_ylim(0, 0.006)
+plt.savefig('figure_supplementary9b.svg')

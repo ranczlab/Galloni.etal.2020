@@ -2,7 +2,6 @@ from neuron import h
 from matplotlib import pyplot as plt
 import numpy as np
 
-
 def stimulate_cell(Is=1, Is_dur=5, Is_onset=100, Id_max=0.5, Id_rise=0.5, Id_decay=5, Id_onset=105, simdur=300,
                    dt=0.025, It=0, It_dur=5, It_onset=100, Ia=0, Ia_dur=5, Ia_onset=100, pulses_onset=100, pulses_dur=3,
                    pulses_amp=1.5, pulses_num=0, pulses_period=10):
@@ -50,7 +49,7 @@ for i in range(l.size):
     h.apical.L = l[i]
     h('recalculate_passive_properties()')
     h('recalculate_channel_densities()')
-    h('recalculate_geometry()')
+    #h('recalculate_geometry()')
 
     stimulate_cell(simdur=1000, Is_dur=5, Is=1, Is_onset=500, Id_max=0)
 
@@ -65,14 +64,15 @@ for i in range(l.size):
     axes[1, i].plot(t_vec, stim_vec, color = 'black')
 
 axes[1, 0].set_ylim(-1, 3)
-plt.show()
+plt.savefig('outputs/figures/figure_3c_somaticonly.svg')
+
 
 fig, axes = plt.subplots(2, l.size, sharex='all', sharey='row', squeeze=False, figsize=(16, 8))
 for i in range(l.size):
     h.apical.L = l[i]
     h('recalculate_passive_properties()')
     h('recalculate_channel_densities()')
-    h('recalculate_geometry()')
+    #h('recalculate_geometry()')
 
     stimulate_cell(simdur=1000, Is=0, Id_max=.7, Id_onset=505)
 
@@ -87,14 +87,14 @@ for i in range(l.size):
     axes[1, i].plot(t_vec, stim_vec, color = 'black')
 
 axes[1, 0].set_ylim(-1, 3)
-plt.show()
+plt.savefig('outputs/figures/figure_3c_epsponly.svg')
 
 fig, axes = plt.subplots(2, l.size, sharex='all', sharey='row', squeeze=False, figsize=(16, 8))
 for i in range(l.size):
     h.apical.L = l[i]
     h('recalculate_passive_properties()')
     h('recalculate_channel_densities()')
-    h('recalculate_geometry()')
+    #h('recalculate_geometry()')
 
     stimulate_cell(simdur=1000, Id_max=0.7, Is_onset=500, Id_onset=505)
 
@@ -109,5 +109,7 @@ for i in range(l.size):
     axes[1, i].plot(t_vec, stim_vec, color = 'black')
 
 axes[1, 0].set_ylim(-1, 3)
-plt.show()
+plt.savefig('outputs/figures/figure_3c_BACfiring.svg')
+
+
 

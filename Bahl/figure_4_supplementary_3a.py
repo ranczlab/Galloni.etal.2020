@@ -42,43 +42,30 @@ dt = 0.025
 h.tstop = 1000 - dt
 
 l = np.arange(200, 650, 50)
-gbar_nat_multiplier = np.linspace(0, 1, 5)
+gbar_ih_multiplier = np.linspace(0, 1, 5)
 
-
-maxV_tuft = np.zeros([2, l.size, gbar_nat_multiplier.size])
-maxV_trunk = np.zeros([2, l.size, gbar_nat_multiplier.size])
-w_tuft = np.zeros([2, l.size, gbar_nat_multiplier.size])
-w_trunk = np.zeros([2, l.size, gbar_nat_multiplier.size])
-integral_trunk = np.zeros([2, l.size, gbar_nat_multiplier.size])
-integral_tuft = np.zeros([2, l.size, gbar_nat_multiplier.size])
+maxV_tuft = np.zeros([2, l.size, gbar_ih_multiplier.size])
+maxV_trunk = np.zeros([2, l.size, gbar_ih_multiplier.size])
+w_tuft = np.zeros([2, l.size, gbar_ih_multiplier.size])
+w_trunk = np.zeros([2, l.size, gbar_ih_multiplier.size])
+integral_trunk = np.zeros([2, l.size, gbar_ih_multiplier.size])
+integral_tuft = np.zeros([2, l.size, gbar_ih_multiplier.size])
 
 for i in range(l.size):
     h.apical.L = l[i]
    
-    for j in range(gbar_nat_multiplier.size):
+    for j in range(gbar_ih_multiplier.size):
         
         h('recalculate_passive_properties()')
-        h('''
-            // See Keren et al. 2009
-
-            soma distance()
-
-            forsec apicaltree_list {
-             for(x) gbar_kfast(x) = soma.gbar_kfast(0.5) * exp(-distance(x)/decay_kfast)
-             for(x) gbar_kslow(x) = soma.gbar_kslow(0.5) * exp(-distance(x)/decay_kslow)
-            }
-
-            tuft mih = gbar_ih/distance(0)
-            tuft mnat = (gbar_nat-soma.gbar_nat(0.5))/distance(0)
-
-            apical for(x) gbar_nat(x) = (mnat*distance(x) + soma.gbar_nat(0.5))*%f
-            apical for(x) gbar_ih(x) = mih*distance(x)
-        ''' % gbar_nat_multiplier[j])
+        h('recalculate_channel_densities()')
         h('recalculate_geometry()')
         
-        print('multiplier: ' + str(gbar_nat_multiplier[j]))
-        for seg in h.apical:
-            print(seg.gbar_nat)
+        print('multiplier: ' + str(gbar_ih_multiplier[j]))
+            
+        for seg in h.tuft:
+            seg.gbar_ih = 16.194815 * gbar_ih_multiplier[j]
+            print(seg.gbar_ih)
+            
         # Simulate changing density of Na under 0 Ca2+
         h.tuft.gbar_sca = 0
         h.run()
@@ -110,7 +97,7 @@ tuft_colors = ['#fee5d9', '#fcae91', '#fb6a4a', '#de2d26', '#a50f15']
 
 fig, axes = plt.subplots(3, 2, sharex='all', sharey='row', squeeze=False, figsize=(16, 16))
 
-for i in range(gbar_nat_multiplier.size):
+for i in range(gbar_ih_multiplier.size):
     axes[0, 0].plot(l, maxV_tuft[0, :, i], color=tuft_colors[i])
     axes[0, 0].plot(l, maxV_tuft[1, :, i], color=tuft_colors[i], linestyle='--')
 
@@ -130,7 +117,10 @@ for i in range(gbar_nat_multiplier.size):
     axes[2, 1].plot(l, integral_trunk[1, :, i], color=trunk_colors[i], linestyle='--')
 
 axes[0, 0].set_ylabel('peak voltage (mV)')
+axes[0, 0].set_ylim(-60, 20)
 axes[1, 0].set_ylabel('width (ms)')
+axes[1, 0].set_ylim(20, 120)
 axes[2, 0].set_ylabel('integral (Vs)')
+axes[2, 0].set_ylim(0, 0.006)
 
-plt.savefig('outputs/figures/figure_4d-e.svg')
+plt.savefig('outputs/figures/figure_4_supplementary_3a.svg')

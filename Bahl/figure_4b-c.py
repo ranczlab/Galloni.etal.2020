@@ -84,13 +84,13 @@ axes[0, 1].plot(l, w[2, ], color='blue', linestyle='--')
 axes[0, 1].plot(l, w[1, ], color='red')
 axes[0, 1].plot(l, w[3, ], color='red', linestyle='--')
 
-axes[0, 0].set_xlabel('length ($\u03BC$m)')
+axes[0, 0].set_xlabel('length (um)')
 axes[0, 0].set_ylabel('peak voltage (mV)')
 
-axes[0, 1].set_xlabel('length ($\u03BC$m)')
+axes[0, 1].set_xlabel('length (um)')
 axes[0, 1].set_ylabel('width (ms)')
 
 axes[0, 0].set_ylim(-80, 20)
 axes[0, 1].set_ylim(0, 100)
 
-plt.show()
+plt.savefig('outputs/figures/figure_4b-c.svg')

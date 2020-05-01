@@ -1,7 +1,7 @@
 from neuron import h, gui
 from matplotlib import pyplot as plt
 import numpy as np
-
+import csv
 
 def measure_width(trace):
     trace = np.array(trace)
@@ -70,6 +70,25 @@ for i in range(lengths.size):
     absolute_locations = np.array(locations) * lengths[i]
     axes[0, 0].plot(absolute_locations, maxV)
     axes[0, 1].plot(absolute_locations, w)
+    print(maxV)
+    
+    fields = maxV
+    
+    with open(r'figure_supplementary7c.csv', 'a') as f:
+        writer = csv.writer(f)
+        writer.writerow(fields)
+        
+    baseline = [0] * len(probes)
+    
+    for j in range(len(probes)):
+        this_probe = np.array(probes[j])
+        baseline[j] = this_probe[300]
+        
+    fields = baseline
+    
+    with open(r'figure_supplementary7c_baselines.csv', 'a') as f:
+        writer = csv.writer(f)
+        writer.writerow(fields)
 
 axes[0, 0].legend(lengths)
 

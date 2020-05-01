@@ -2,7 +2,6 @@ from neuron import h
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 def measure_width(trace):
     trace = np.array(trace)
 
@@ -56,9 +55,12 @@ for i in range(l.size):
     h('recalculate_geometry()')
 
     for j in range(Ih.size):
+        
+        print('multiplier: ' + str(Ih[j]))
 
         for seg in h.tuft:
-            seg.gbar_ih = seg.gbar_ih * Ih[j]
+            seg.gbar_ih = 16.194815 * Ih[j]
+            print(seg.gbar_ih)
 
         h.tuft.gbar_sca = 0
         h.run()
@@ -116,8 +118,9 @@ for i in range(Ih.size):
 
 axes[0, 0].set_ylabel('peak voltage (mV)')
 axes[1, 0].set_ylabel('width (ms)')
-axes[2, 0].set_ylabel('integral (V·s)')
+axes[2, 0].set_ylabel('integral (Vs)')
 
 axes[0, 0].set_ylim(-80, 20)
 axes[1, 0].set_ylim(0, 120)
 axes[2, 0].set_ylim(0, 0.006)
+plt.savefig('figure_supplementary9a.svg')
