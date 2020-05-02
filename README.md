@@ -25,10 +25,10 @@ Modelling experiments were authored in Python 3.6 and make use of the NEURON sim
       + data
     + ...
 
-The "Experiments" folder contains experimental data and scripts for generating figures 1 and 2 (and related supplementary figures). The scripts were written for MATLAB R2018a.
+The /Experiments directory contains experimental data and scripts for generating figures 1 and 2 (and related supplementary figures). The scripts were written for MATLAB R2018a.
 
-The "Models" folder contains separate sub-directories for the Hay et al. (2011) and Bahl et al. (2012) models. 
+The /Models directory contains separate sub-directories for the Hay et al. (2011) and Bahl et al. (2012) models. When code for these models is run, the /outputs sub-directory will be populated with simulated data and figures. The /outputs sub-directories are empty by default to reduce storage requirements.
 
-The "Bahl" folder contains code for the reduced model based on the same by Bahl et al. (2012). Figures related to the reduced model are reproducible through the Python scripts (running Python 3.6).
+The /Bahl sub-directory contains code for the reduced model based on the same by Bahl et al. (2012). Figures related to the reduced model are reproducible through the Python scripts (running Python 3.6).
 
-The "Hay" folder contains code for the detailed (morphologically realistic) model based on the original by Hay et al. (2011). Figures related to the detailed model require manual editing of the base files associated with the model in order to fully reproduce the figures in the paper. The shell script in the parent directory automates this process. A full account of parameters used is available in the submission.
+The /Hay sub-directory contains code for the detailed (morphologically realistic) model based on the original by Hay et al. (2011). Figures related to the detailed model require manual editing of the base files associated with the model in order to fully reproduce the figures in the paper. The shell script in the parent directory automates this process. A full account of parameters used is available in the submission.
