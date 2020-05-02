@@ -1,12 +1,12 @@
 # Data and models of length-dependent Ca<sup>2+</sup> electrogenesis in layer 5 pyramidal neurons
 
-The files in these repository reproduce figures from "Apical length governs computational diversity of layer 5 pyramidal neurons" (Galloni et al., 2020) available as a [preprint](https://www.biorxiv.org/content/10.1101/754499v2) and submitted for publication.
+This repository reproduces figures from "Apical length governs computational diversity of layer 5 pyramidal neurons" (Galloni et al., 2020) available as a [preprint](https://www.biorxiv.org/content/10.1101/754499v2) and submitted for publication.
 
 ### Prerequisites
 
-Figures from physiological experiments were written in MATLAB R2018a and should be compatible with later versions.
+Figures from physiological experiments were originally generated in MATLAB R2018a and should be compatible with later versions. 
 
-Modelling experiments were authored in Python 3.6 and make use of the NEURON simulation environment (7.7.1, http://neuron.yale.edu). 
+Modelling experiments were originally written in Python 3.6 and make use of the SciPy library (http://scipy.org) and the NEURON simulation environment (7.7.1, http://neuron.yale.edu). 
 
 ### File structure
 
@@ -25,7 +25,7 @@ Modelling experiments were authored in Python 3.6 and make use of the NEURON sim
       + data
     + ...
 
-The /Experiments directory contains experimental data and scripts for generating figures 1 and 2 (and related supplementary figures). The scripts were written for MATLAB R2018a.
+The /Experiments directory contains experimental data and scripts for generating figures 1 and 2 (and related supplementary figures). The scripts were originally written for MATLAB R2018a.
 
 The /Models directory contains separate sub-directories for the Hay et al. (2011) and Bahl et al. (2012) models. When code for these models is run, the /outputs sub-directory will be populated with simulated data and figures. The /outputs sub-directories are empty by default to reduce storage requirements.
 
