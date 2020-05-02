@@ -5,6 +5,8 @@ python Hay/figure_2_supplementary_3b_short.py
 python Hay/set_params.py 1 685 200 0.01
 python Hay/figure_2_supplementary_3b_long.py
 
+python Bahl/figure_2_supplementary_3c.py
+
 python Hay/set_params.py 1 350 100 0.01
 python Hay/figure_3a_short.py
 python Hay/set_params.py 1 685 200 0.01
@@ -55,7 +57,7 @@ done
 
 python Hay/figure_3_supplementary_1d_summary.py
 
-# See Bahl/figure_3_supplementary_1e.py
+python Bahl/figure_3_supplementary_1e.py
 
 python Hay/set_params.py 1 685 100 0.01
 python Hay/figure_3_supplementary_2a.py 100
@@ -104,3 +106,23 @@ do
 done
 
 python Hay/figure_3_supplementary_2f_summary.py
+
+python Bahl/figure_4a.py
+python Bahl/figure_4b-c.py
+python Bahl/figure_4d-e.py
+
+python Bahl/figure_4_supplementary_1a.py
+python Bahl/figure_4_supplementary_1b.py
+python Bahl/figure_4_supplementary_1c.py
+
+python Bahl/figure_4_supplementary_2.py
+
+python Bahl/figure_4_supplementary_3a.py
+python Bahl/figure_4_supplementary_3b.py
+
+python Bahl/figure_5a.py
+python Bahl/figure_5b.py
+python Bahl/figure_5c.py
+python Bahl/figure_5d.py
+
+python Bahl/figure_5_supplementary_1.py
