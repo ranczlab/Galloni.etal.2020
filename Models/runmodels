@@ -1,6 +1,11 @@
 #!/bin/bash
 
 python Hay/set_params.py 1 350 100 0.01
+python Hay/figure_2_supplementary_3b_short.py
+python Hay/set_params.py 1 685 200 0.01
+python Hay/figure_2_supplementary_3b_long.py
+
+python Hay/set_params.py 1 350 100 0.01
 python Hay/figure_3a_short.py
 python Hay/set_params.py 1 685 200 0.01
 python Hay/figure_3a_long.py
