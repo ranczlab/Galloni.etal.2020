@@ -1,0 +1,68 @@
+#!/bin/bash
+
+python Hay/set_params.py 1 350 100 0.01
+python Hay/figure_3a_short.py
+python Hay/set_params.py 1 685 200 0.01
+python Hay/figure_3a_long.py
+
+rm -rf Hay/outputs/data/figure_3b_long.csv 
+rm -rf Hay/outputs/data/figure_3b_short.csv
+
+for tuft_gca_multiplier in 0 1 2 3 4 5 6 7 8
+do
+    python Hay/set_params.py $tuft_gca_multiplier 350 100 0.01
+    python Hay/figure_3b_short.py $tuft_gca_multiplier
+    python Hay/set_params.py $tuft_gca_multiplier 685 200 0.01
+    python Hay/figure_3b_long.py $tuft_gca_multiplier
+done
+
+# TODO Hay/figure_3b_summary.py 
+
+python Bahl/figure_3c.py
+python Bahl/figure_3d.py
+
+python Hay/set_params.py 1 350 100 0.01
+python Hay/figure_3_supplementary_1a_short.py
+python Hay/set_params.py 1 685 200 0.01
+python Hay/figure_3_supplementary_1a_long.py
+
+for tuft_gca_multiplier in 0 1 2 3 4 5 6 7 8
+do
+    python Hay/set_params.py $tuft_gca_multiplier 350 100 0.01
+    python Hay/figure_3_supplementary_1b_short.py $tuft_gca_multiplier
+    python Hay/set_params.py $tuft_gca_multiplier 685 200 0.01
+    python Hay/figure_3_supplementary_1b_long.py $tuft_gca_multiplier
+done
+
+python Hay/set_params.py 1 350 100 0.01
+python Hay/figure_3_supplementary_1c.py
+
+# TODO Hay/figure_3_supplementary_1d
+# TODO Hay/figure_3_supplementary_1e
+
+python Hay/set_params.py 1 685 100 0.01
+python Hay/figure_3_supplementary_2a.py 100
+python Hay/set_params.py 1 685 200 0.01
+python Hay/figure_3_supplementary_2a.py 200
+python Hay/set_params.py 1 350 100 0.01
+python Hay/figure_3_supplementary_2b.py 100
+python Hay/set_params.py 1 350 200 0.01
+python Hay/figure_3_supplementary_2b.py 200
+
+# TODO Hay/figure_3_supplementary_2c
+
+rm -rf Hay/outputs/data/figure_3_supplementary_2d_long.csv
+rm -rf Hay/outputs/data/figure_3_supplementary_2d_short.csv
+
+for LVA_volume in 0.001 0.01 0.019 0.028 0.037 0.046 0.055 0.064 0.073 0.082 0.091 0.1
+do
+    python Hay/set_params.py 1 350 100 $LVA_volume
+    python Hay/figure_3_supplementary_2d_short.py $LVA_volume
+    python Hay/set_params.py 1 685 200 $LVA_volume
+    python Hay/figure_3_supplementary_2d_long.py $LVA_volume
+done
+
+python Hay/figure_3_supplementary_2d_summary.py
+
+# TODO Hay/figure_3_supplementary_2e.py
+# TODO Hay/figure_3_supplementary_2f.py
