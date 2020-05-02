@@ -61,18 +61,18 @@ python Hay/figure_3_supplementary_2b.py 100
 python Hay/set_params.py 1 350 200 0.01
 python Hay/figure_3_supplementary_2b.py 200
 
-rm -rf outputs/data/figure_3_supplementary_2c_short.csv
-rm -rf outputs/data/figure_3_supplementary_2c_long.csv
+rm -rf Hay/outputs/data/figure_3_supplementary_2c_short.csv
+rm -rf Hay/outputs/data/figure_3_supplementary_2c_long.csv
 
 for hotspot_size in 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200
 do
-    python set_params.py 1 350 $hotspot_size 0.01
-    python figure_3_supplementary_2c_short.py $hotspot_size
-    python set_params.py 1 685 $hotspot_size 0.01
-    python figure_3_supplementary_2c_long.py $hotspot_size
+    python Hay/set_params.py 1 350 $hotspot_size 0.01
+    python Hay/figure_3_supplementary_2c_short.py $hotspot_size
+    python Hay/set_params.py 1 685 $hotspot_size 0.01
+    python Hay/figure_3_supplementary_2c_long.py $hotspot_size
 done
 
-python figure_3_supplementary_2c_summary.py
+python Hay/figure_3_supplementary_2c_summary.py
 
 rm -rf Hay/outputs/data/figure_3_supplementary_2d_long.csv
 rm -rf Hay/outputs/data/figure_3_supplementary_2d_short.csv
@@ -87,15 +87,15 @@ done
 
 python Hay/figure_3_supplementary_2d_summary.py
 
-rm -rf outputs/data/figure_3_supplementary_2f_long.csv
-rm -rf outputs/data/figure_3_supplementary_2f_short.csv
+rm -rf Hay/outputs/data/figure_3_supplementary_2f_long.csv
+rm -rf Hay/outputs/data/figure_3_supplementary_2f_short.csv
 
 for hotspot_size in 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200
 do
-    python set_params.py 1 685 $hotspot_size 0.01
-    python figure_3_supplementary_2ef_long.py $hotspot_size
-    python set_params.py 1 350 $hotspot_size 0.01
-    python figure_3_supplementary_2ef_short.py $hotspot_size
+    python Hay/set_params.py 1 685 $hotspot_size 0.01
+    python Hay/figure_3_supplementary_2ef_long.py $hotspot_size
+    python Hay/set_params.py 1 350 $hotspot_size 0.01
+    python Hay/figure_3_supplementary_2ef_short.py $hotspot_size
 done
 
-python figure_3_supplementary_2f_summary.py
+python Hay/figure_3_supplementary_2f_summary.py
