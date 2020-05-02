@@ -16,7 +16,7 @@ do
     python Hay/figure_3b_long.py $tuft_gca_multiplier
 done
 
-# TODO Hay/figure_3b_summary.py 
+python Hay/figure_3b_summary.py 
 
 python Bahl/figure_3c.py
 python Bahl/figure_3d.py
@@ -37,8 +37,20 @@ done
 python Hay/set_params.py 1 350 100 0.01
 python Hay/figure_3_supplementary_1c.py
 
-# TODO Hay/figure_3_supplementary_1d
-# TODO Hay/figure_3_supplementary_1e
+rm -rf Hay/outputs/data/figure_3_supplementary_1d_long.csv 
+rm -rf Hay/outputs/data/figure_3_supplementary_1d_short.csv
+
+for tuft_gca_multiplier in 0 1 2 3 4 5 6 7 8
+do
+    python Hay/set_params.py $tuft_gca_multiplier 350 100 0.01
+    python Hay/figure_3_supplementary_1d_short.py $tuft_gca_multiplier
+    python Hay/set_params.py $tuft_gca_multiplier 685 200 0.01
+    python Hay/figure_3_supplementary_1d_long.py $tuft_gca_multiplier
+done
+
+python Hay/figure_3_supplementary_1d_summary.py
+
+# See Bahl/figure_3_supplementary_1e.py
 
 python Hay/set_params.py 1 685 100 0.01
 python Hay/figure_3_supplementary_2a.py 100
@@ -49,7 +61,18 @@ python Hay/figure_3_supplementary_2b.py 100
 python Hay/set_params.py 1 350 200 0.01
 python Hay/figure_3_supplementary_2b.py 200
 
-# TODO Hay/figure_3_supplementary_2c
+rm -rf outputs/data/figure_3_supplementary_2c_short.csv
+rm -rf outputs/data/figure_3_supplementary_2c_long.csv
+
+for hotspot_size in 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200
+do
+    python set_params.py 1 350 $hotspot_size 0.01
+    python figure_3_supplementary_2c_short.py $hotspot_size
+    python set_params.py 1 685 $hotspot_size 0.01
+    python figure_3_supplementary_2c_long.py $hotspot_size
+done
+
+python figure_3_supplementary_2c_summary.py
 
 rm -rf Hay/outputs/data/figure_3_supplementary_2d_long.csv
 rm -rf Hay/outputs/data/figure_3_supplementary_2d_short.csv
@@ -64,5 +87,15 @@ done
 
 python Hay/figure_3_supplementary_2d_summary.py
 
-# TODO Hay/figure_3_supplementary_2e.py
-# TODO Hay/figure_3_supplementary_2f.py
+rm -rf outputs/data/figure_3_supplementary_2f_long.csv
+rm -rf outputs/data/figure_3_supplementary_2f_short.csv
+
+for hotspot_size in 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200
+do
+    python set_params.py 1 685 $hotspot_size 0.01
+    python figure_3_supplementary_2ef_long.py $hotspot_size
+    python set_params.py 1 350 $hotspot_size 0.01
+    python figure_3_supplementary_2ef_short.py $hotspot_size
+done
+
+python figure_3_supplementary_2f_summary.py
