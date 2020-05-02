@@ -6,7 +6,7 @@ This repository reproduces figures from "Apical length governs computational div
 
 Figures from physiological experiments were originally generated in MATLAB R2018a and should be compatible with later versions. 
 
-Modelling experiments were originally written in Python 3.6 and make use of the SciPy library (http://scipy.org) and the NEURON simulation environment (7.7.1, http://neuron.yale.edu). 
+Modelling experiments were originally written in Python 3.6 and make use of the SciPy library (http://scipy.org) and the NEURON simulation environment (7.7.1, http://neuron.yale.edu). Please refer to respective documentation for further instructions.
 
 ### File structure
 
