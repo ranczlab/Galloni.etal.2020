@@ -13,6 +13,11 @@ def measure_width(trace):
 
     return width
 
+def find_nearest(array, value):
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return idx
+
 h.load_file('init_models_with_ca/init_model2.hoc')
 default_sca = h.tuft.gbar_sca
 default_cm = h.tuft.cm
@@ -41,7 +46,7 @@ dt = 0.025
 h.tstop = 1000 - dt
 
 Ih = np.arange(0, 1.25, .25) 
-l = np.arange(200, 700, 100)
+l = np.arange(200, 605, 5)
 array_size = [2, 2, l.size, Ih.size]  # Ca compartment length Ih
 maxV = np.zeros(array_size)
 w = np.zeros(array_size)
@@ -91,25 +96,28 @@ for i in range(l.size):
 
 fig, axes = plt.subplots(3, 2, sharex='all', sharey='row', squeeze=False, figsize=(16, 16))
 
+trunk_colors = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c']
+tuft_colors = ['#fee5d9', '#fcae91', '#fb6a4a', '#de2d26', '#a50f15']
+
 for i in range(Ih.size):
-    axes[0, 0].plot(l, maxV[0, 1, :, i])
-    axes[0, 0].plot(l, maxV[1, 1, :, i], linestyle='--')
+    axes[0, 0].plot(l, maxV[0, 1, :, i], color=tuft_colors[i])
+    axes[0, 0].plot(l, maxV[1, 1, :, i], color=tuft_colors[i], linestyle='--')
 
-    axes[0, 1].plot(l, maxV[0, 0, :, i])
-    axes[0, 1].plot(l, maxV[1, 0, :, i], linestyle='--')
+    axes[0, 1].plot(l, maxV[0, 0, :, i], color=trunk_colors[i])
+    axes[0, 1].plot(l, maxV[1, 0, :, i], color=trunk_colors[i], linestyle='--')
 
-    axes[1, 0].plot(l, w[0, 1, :, i])
-    axes[1, 0].plot(l, w[1, 1, :, i], linestyle='--')
+    axes[1, 0].plot(l, w[0, 1, :, i], color=tuft_colors[i])
+    axes[1, 0].plot(l, w[1, 1, :, i], color=tuft_colors[i], linestyle='--')
 
-    axes[1, 1].plot(l, w[0, 0, :, i])
-    axes[1, 1].plot(l, w[1, 0, :, i], linestyle='--')
+    axes[1, 1].plot(l, w[0, 0, :, i], color=trunk_colors[i])
+    axes[1, 1].plot(l, w[1, 0, :, i], color=trunk_colors[i], linestyle='--')
 
-    axes[2, 0].plot(l, integral[0, 1, :, i])
-    axes[2, 0].plot(l, integral[1, 1, :, i], linestyle='--')
+    axes[2, 0].plot(l, integral[0, 1, :, i], color=tuft_colors[i])
+    axes[2, 0].plot(l, integral[1, 1, :, i], color=tuft_colors[i], linestyle='--')
 
-    axes[2, 1].plot(l, integral[0, 0, :, i])
-    axes[2, 1].plot(l, integral[1, 0, :, i], linestyle='--')
-
+    axes[2, 1].plot(l, integral[0, 0, :, i], color=trunk_colors[i])
+    axes[2, 1].plot(l, integral[1, 0, :, i], color=trunk_colors[i], linestyle='--')
+    
 axes[0, 0].set_ylabel('peak voltage (mV)')
 axes[1, 0].set_ylabel('width (ms)')
 axes[2, 0].set_ylabel('integral (Vs)')
@@ -123,11 +131,6 @@ plt.savefig('outputs/figures/figure_4_supplementary_3a.svg')
 critical_length_d2y = []
 critical_length_20mv =[]
 gradients = []
-
-def find_nearest(array, value):
-    array = np.asarray(array)
-    idx = (np.abs(array - value)).argmin()
-    return idx
 
 for i in range(Ih.size):
     x = l

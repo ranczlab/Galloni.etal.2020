@@ -4,32 +4,6 @@ import numpy as np
 import csv
 from scipy.interpolate import UnivariateSpline
 
-def find_changes(y):
-    y /= np.std(y)
-    threshold = 0.1
-
-    m = y.size
-    x = np.arange(m)
-    s = m
-    max_error = 1
-    while max_error > threshold: 
-        spl = UnivariateSpline(x, y, k=1, s=s)
-        interp_y = spl(x)
-        max_error = np.max(np.abs(interp_y - y))
-        s /= 2
-    knots = spl.get_knots()
-    values = spl(knots)
-    
-    ts = knots.size
-    idx = np.arange(ts)
-    changes = []
-    for j in range(1, ts-1):
-        spl = UnivariateSpline(knots[idx != j], values[idx != j], k=1, s=0)
-        if np.max(np.abs(spl(x) - interp_y)) > 2*threshold:
-            changes.append(knots[j])
-     
-    return(changes)
-
 def measure_width(trace):
     trace = np.array(trace)
 
@@ -39,6 +13,11 @@ def measure_width(trace):
     width = dt * (points[-1] - points[0])
 
     return width
+
+def find_nearest(array, value):
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return idx
 
 h.load_file('init_models_with_ca/init_model2.hoc')
 default_sca = h.tuft.gbar_sca
@@ -67,8 +46,8 @@ t_vec.record(h._ref_t)
 dt = 0.025
 h.tstop = 1000 - dt
 
-l = np.arange(200, 610, 10)
-gbar_nat_multiplier = np.arange(0, 1.1, .1)
+l = np.arange(200, 605, 5)
+gbar_nat_multiplier = np.arange(0, 1.25, 0.25)
 
 
 maxV_tuft = np.zeros([2, l.size, gbar_nat_multiplier.size])
@@ -131,53 +110,57 @@ for i in range(l.size):
 
 fig, axes = plt.subplots(3, 2, sharex='all', sharey='row', squeeze=False, figsize=(16, 16))
 
+trunk_colors = ['#eff3ff', '#bdd7e7', '#6baed6', '#3182bd', '#08519c']
+tuft_colors = ['#fee5d9', '#fcae91', '#fb6a4a', '#de2d26', '#a50f15']
+
 for i in range(gbar_nat_multiplier.size):
-    axes[0, 0].plot(l, maxV_tuft[0, :, i])
-    axes[0, 0].plot(l, maxV_tuft[1, :, i], linestyle='--')
+    axes[0, 0].plot(l, maxV_tuft[0, :, i], color = tuft_colors[i])
+    axes[0, 0].plot(l, maxV_tuft[1, :, i], color = tuft_colors[i], linestyle='--')
 
-    axes[0, 1].plot(l, maxV_trunk[0, :, i])
-    axes[0, 1].plot(l, maxV_trunk[1, :, i], linestyle='--')
+    axes[0, 1].plot(l, maxV_trunk[0, :, i], color = trunk_colors[i])
+    axes[0, 1].plot(l, maxV_trunk[1, :, i], color = trunk_colors[i], linestyle='--')
 
-    axes[1, 0].plot(l, w_tuft[0, :, i])
-    axes[1, 0].plot(l, w_tuft[1, :, i], linestyle='--')
+    axes[1, 0].plot(l, w_tuft[0, :, i], color = tuft_colors[i])
+    axes[1, 0].plot(l, w_tuft[1, :, i], color = tuft_colors[i], linestyle='--')
 
-    axes[1, 1].plot(l, w_trunk[0, :, i])
-    axes[1, 1].plot(l, w_trunk[1, :, i], linestyle='--')
+    axes[1, 1].plot(l, w_trunk[0, :, i], color = trunk_colors[i])
+    axes[1, 1].plot(l, w_trunk[1, :, i], color = trunk_colors[i], linestyle='--')
 
-    axes[2, 0].plot(l, integral_tuft[0, :, i])
-    axes[2, 0].plot(l, integral_tuft[1, :, i], linestyle='--')
+    axes[2, 0].plot(l, integral_tuft[0, :, i], color = tuft_colors[i])
+    axes[2, 0].plot(l, integral_tuft[1, :, i], color = tuft_colors[i], linestyle='--')
 
-    axes[2, 1].plot(l, integral_trunk[0, :, i])
-    axes[2, 1].plot(l, integral_trunk[1, :, i], linestyle='--')
+    axes[2, 1].plot(l, integral_trunk[0, :, i], color = trunk_colors[i])
+    axes[2, 1].plot(l, integral_trunk[1, :, i], color = trunk_colors[i], linestyle='--')
 
 axes[0, 0].set_ylabel('peak voltage (mV)')
-axes[1, 0].set_ylabel('width (ms)')
+axes[1, 0].set_ylabel('width (ms)') 
 axes[2, 0].set_ylabel('integral (Vs)')
 
 plt.savefig('outputs/figures/figure_4d-e.svg')
 
-critical_length = []
+critical_length_d2y = []
+critical_length_20mv =[]
 gradients = []
-
+plt.figure()
 for i in range(gbar_nat_multiplier.size):
     x = l
     y = maxV_tuft[1, :, i]
-    z = np.polyfit(x, y, 1)
+    dy = np.gradient(y)
+    d2y = np.gradient(dy)
+    
+    y2 = maxV_tuft[1, :, i]
+    z = np.polyfit(x, y2, 1)
     p = np.poly1d(z)
     
-    changes = find_changes(y)
-    if not changes:
-        change_point = float('nan')
-    else:
-        changes = changes[0]
-        change_point = l[int(changes)]
-    
-    critical_length.append(change_point)
+    critical_length_20mv.append(l[find_nearest(y, -20)])
+    critical_length_d2y.append(l[np.argmax(d2y)])
     gradients.append(z[0])
+    plt.plot(y, '-', d2y, 'ro')
+    plt.savefig('figure_4d-e_d2y.svg')
     
 with open(r'outputs/data/figure_4e.csv', 'w') as f:
     writer = csv.writer(f)
-    writer.writerow(['Na_multiplier', 'critical_length', 'slope'])
+    writer.writerow(['Na_multiplier', 'critical_length_d2y', 'critical_length_20mv', 'slope'])
     for i in range(gbar_nat_multiplier.size):
-        fields = [gbar_nat_multiplier[i], critical_length[i], gradients[i]]
+        fields = [gbar_nat_multiplier[i], critical_length_d2y[i], critical_length_20mv[i], gradients[i]]
         writer.writerow(fields)
