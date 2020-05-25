@@ -119,10 +119,10 @@ python bahl/figure_4_supplementary_2.py
 
 python bahl/figure_4_supplementary_3a.py
 python bahl/figure_4_supplementary_3b.py
+python bahl/figure_4_supplementary_4.py
 
 python bahl/figure_5a.py
 python bahl/figure_5b.py
 python bahl/figure_5c.py
 python bahl/figure_5d.py
 
-python bahl/figure_5_supplementary_1.py

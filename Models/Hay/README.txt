@@ -1,1 +1,1 @@
-Ensure mod files are compiled prior to first run with "nrnivmodl channels" (Mac OS/Unix) or using the Windows GUI. Mod files should be available in model directory, e.g. "../hay/x86_64". See https://neuron.yale.edu/neuron/faq for help.
+Ensure mod files are compiled prior to first run with "nrnivmodl mod" (Mac OS/Unix) or using the Windows GUI. Mod files should be available in model directory, e.g. "../hay/x86_64". See https://neuron.yale.edu/neuron/faq for help.

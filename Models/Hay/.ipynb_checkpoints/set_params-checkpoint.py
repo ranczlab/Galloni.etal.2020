@@ -101,6 +101,6 @@ proc biophys() {
 endtemplate L5PCbiophys
 """ % (str(args.tuft_gca_multiplier), str(args.lowxy), str(args.hotspot_size), str(args.LVA_volume))
 
-with open('hay/simulationcode/L5PCbiophys3.hoc', 'w') as f:
+with open('simulationcode/L5PCbiophys3.hoc', 'w') as f:
     f.write(filetext)
     
