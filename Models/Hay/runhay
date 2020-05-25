@@ -1,0 +1,102 @@
+#!/bin/bash
+
+python set_params.py 1 350 100 0.01
+python figure_2_supplementary_3b_short.py
+python set_params.py 1 685 200 0.01
+python figure_2_supplementary_3b_long.py
+
+python set_params.py 1 350 100 0.01
+python figure_3a_short.py
+python set_params.py 1 685 200 0.01
+python figure_3a_long.py
+
+rm -rf outputs/data/figure_3b_long.csv 
+rm -rf outputs/data/figure_3b_short.csv
+
+for tuft_gca_multiplier in 0 1 2 3 4 5 6 7 8
+do
+    python set_params.py $tuft_gca_multiplier 350 100 0.01
+    python figure_3b_short.py $tuft_gca_multiplier
+    python set_params.py $tuft_gca_multiplier 685 200 0.01
+    python figure_3b_long.py $tuft_gca_multiplier
+done
+
+python figure_3b_summary.py 
+
+python set_params.py 1 350 100 0.01
+python figure_3_supplementary_1a_short.py
+python set_params.py 1 685 200 0.01
+python figure_3_supplementary_1a_long.py
+
+for tuft_gca_multiplier in 0 1 2 3 4 5 6 7 8
+do
+    python set_params.py $tuft_gca_multiplier 350 100 0.01
+    python figure_3_supplementary_1b_short.py $tuft_gca_multiplier
+    python set_params.py $tuft_gca_multiplier 685 200 0.01
+    python figure_3_supplementary_1b_long.py $tuft_gca_multiplier
+done
+
+python set_params.py 1 350 100 0.01
+python figure_3_supplementary_1c.py
+
+rm -rf outputs/data/figure_3_supplementary_1d_long.csv 
+rm -rf outputs/data/figure_3_supplementary_1d_short.csv
+
+for tuft_gca_multiplier in 0 1 2 3 4 5 6 7 8
+do
+    python set_params.py $tuft_gca_multiplier 350 100 0.01
+    python figure_3_supplementary_1d_short.py $tuft_gca_multiplier
+    python set_params.py $tuft_gca_multiplier 685 200 0.01
+    python figure_3_supplementary_1d_long.py $tuft_gca_multiplier
+done
+
+python figure_3_supplementary_1d_summary.py
+
+python set_params.py 1 685 100 0.01
+python figure_3_supplementary_2a.py 100
+python set_params.py 1 685 200 0.01
+python figure_3_supplementary_2a.py 200
+python set_params.py 1 350 100 0.01
+python figure_3_supplementary_2b.py 100
+python set_params.py 1 350 200 0.01
+python figure_3_supplementary_2b.py 200
+
+rm -rf outputs/data/figure_3_supplementary_2c_short.csv
+rm -rf outputs/data/figure_3_supplementary_2c_long.csv
+
+for hotspot_size in 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200
+do
+    python set_params.py 1 350 $hotspot_size 0.01
+    python figure_3_supplementary_2c_short.py $hotspot_size
+    python set_params.py 1 685 $hotspot_size 0.01
+    python figure_3_supplementary_2c_long.py $hotspot_size
+done
+
+python figure_3_supplementary_2c_summary.py
+
+rm -rf outputs/data/figure_3_supplementary_2d_long.csv
+rm -rf outputs/data/figure_3_supplementary_2d_short.csv
+
+for LVA_volume in 0.001 0.01 0.019 0.028 0.037 0.046 0.055 0.064 0.073 0.082 0.091 0.1
+do
+    python set_params.py 1 350 100 $LVA_volume
+    python figure_3_supplementary_2d_short.py $LVA_volume
+    python set_params.py 1 685 200 $LVA_volume
+    python figure_3_supplementary_2d_long.py $LVA_volume
+done
+
+python figure_3_supplementary_2d_summary.py
+
+rm -rf outputs/data/figure_3_supplementary_2f_long.csv
+rm -rf outputs/data/figure_3_supplementary_2f_short.csv
+
+for hotspot_size in 50 60 70 80 90 100 110 120 130 140 150 160 170 180 190 200
+do
+    python set_params.py 1 685 $hotspot_size 0.01
+    python figure_3_supplementary_2ef_long.py $hotspot_size
+    python set_params.py 1 350 $hotspot_size 0.01
+    python figure_3_supplementary_2ef_short.py $hotspot_size
+done
+
+python figure_3_supplementary_2f_summary.py
+

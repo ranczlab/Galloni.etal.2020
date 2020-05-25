@@ -68,8 +68,8 @@ proc biophys() {
 	$o1.distribute_channels("apic","gIhbar_Ih",2,-0.8696,3.6161,0.0,2.0870,0.00020000000) 
 	   
    multiplier = 1
-   lowxy = 685
-   highxy = 885
+   lowxy = 350
+   highxy = lowxy + 100
    LVA_volume = 0.01
    HVA_volume = 0.11 - LVA_volume
    
@@ -90,7 +90,3 @@ proc biophys() {
 }
 
 endtemplate L5PCbiophys
-
-
-    
-
