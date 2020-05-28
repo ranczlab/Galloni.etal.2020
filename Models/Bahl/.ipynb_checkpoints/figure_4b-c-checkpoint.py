@@ -41,7 +41,7 @@ t_vec.record(h._ref_t)
 dt = 0.025
 h.tstop = 1000 - dt
 
-l = np.arange(200, 650, 50)
+l = np.arange(200, 605, 5)
 fig, axes = plt.subplots(1, 2, sharex='all', squeeze=False, figsize=(32, 15))
 
 maxV = np.zeros([4, l.size])

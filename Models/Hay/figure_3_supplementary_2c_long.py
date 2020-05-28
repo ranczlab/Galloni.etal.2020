@@ -24,7 +24,7 @@ upper = -25
 
 integral = np.trapz(((vtuft[lower:upper] - vtuft[75])/10**6), tvec[lower:upper])
 
-fields = [args.hotspot_size integral]
+fields = [args.hotspot_size, integral]
 if path.exists('outputs/data/figure_3_supplementary_2c_long.csv'):
     with open(r'outputs/data/figure_3_supplementary_2c_long.csv', 'a') as f:
         writer = csv.writer(f)

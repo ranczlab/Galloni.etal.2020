@@ -1,5 +1,10 @@
 #!/bin/bash
 
+mkdir outputs
+mkdir outputs/data
+mkdir outputs/figures
+mkdir outputs/figures/traces
+
 python figure_2_supplementary_3c.py
 
 python figure_3c.py

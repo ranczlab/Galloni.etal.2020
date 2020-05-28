@@ -68,4 +68,4 @@ for i in range(lengths.size):
 plt.ylim(0, 0.5)
 plt.xlim(-20, 20)
 
-plt.savefig('outputs/figures/figure_3_supplementary_1e.py')
+plt.savefig('outputs/figures/figure_3_supplementary_1e.svg')

@@ -28,21 +28,54 @@ t_vec.record(h._ref_t)
 dt = 0.025
 h.tstop = 1000 - dt
 
-duration = np.array([10, 40])
-fig, axes = plt.subplots(2, duration.size, squeeze=False, sharex='all', sharey='all', figsize=(4, 4))
+default_sca = h.tuft.gbar_sca
 
-h.tuft.gbar_sca = 0
-maxV = []
+amps = np.array([-30, -54])
+widths = np.array([10, 25])
+fig, axes = plt.subplots(2, amps.size, squeeze=False, sharex='all', sharey='all', figsize=(4, 4))
 
-for i in range(duration.size):
-    stim.dur2 = duration[i]
+for i in range(amps.size):
+    
+    stim.amp2 = amps[i]
+    stim.dur2 = widths[i]
+
+    h.tuft.gbar_sca = 0
     h.run()
-
+    
     axes[0, i].plot(t_vec, tuft_v_vec, color='red')
     axes[1, i].plot(t_vec, apical_end_v_vec, color='blue')
+    
+    h.tuft.gbar_sca = default_sca
+    h.run()
+    
+    axes[0, i].plot(t_vec, tuft_v_vec, color='red', linestyle = '--')
+    axes[1, i].plot(t_vec, apical_end_v_vec, color='blue', linestyle = '--')
 
-    axes[0, i].set_title(str(duration[i]) + ' ms')
+axes[0, 0].set_xlim(490, 580)
+axes[0, 0].set_ylim(-80, 30)
+plt.savefig('outputs/figures/figure_5c_i.svg')
 
-axes[0, 0].set_xlim(450, 650)
-axes[0, 0].set_ylim(-80, -30)
-plt.savefig('outputs/figures/figure_5c.svg')
+amps = np.array([-7, -25])
+widths = np.array([25, 35])
+fig, axes = plt.subplots(2, amps.size, squeeze=False, sharex='all', sharey='all', figsize=(4, 4))
+
+for i in range(amps.size):
+    
+    stim.amp2 = amps[i]
+    stim.dur2 = widths[i]
+
+    h.tuft.gbar_sca = 0
+    h.run()
+    
+    axes[0, i].plot(t_vec, tuft_v_vec, color='red')
+    axes[1, i].plot(t_vec, apical_end_v_vec, color='blue')
+    
+    h.tuft.gbar_sca = default_sca
+    h.run()
+    
+    axes[0, i].plot(t_vec, tuft_v_vec, color='red', linestyle = '--')
+    axes[1, i].plot(t_vec, apical_end_v_vec, color='blue', linestyle = '--')
+
+axes[0, 0].set_xlim(490, 580)
+axes[0, 0].set_ylim(-80, 30)
+plt.savefig('outputs/figures/figure_5c_ii.svg')

@@ -1,5 +1,10 @@
 #!/bin/bash
 
+mkdir outputs
+mkdir outputs/data
+mkdir outputs/figures
+mkdir outputs/figures/traces
+
 python set_params.py 1 350 100 0.01
 python figure_2_supplementary_3b_short.py
 python set_params.py 1 685 200 0.01

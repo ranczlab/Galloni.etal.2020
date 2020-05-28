@@ -25,7 +25,7 @@ upper = -25
 
 integral = np.trapz(((vtuft[lower:upper] - vtuft[75])/10**6), tvec[lower:upper])
 
-fields = [args.hotspot_size, nspikes, integral]
+fields = [args.hotspot_size, integral]
 if path.exists('outputs/data/figure_3_supplementary_2c_short.csv'):
     with open(r'outputs/data/figure_3_supplementary_2c_short.csv', 'a') as f:
         writer = csv.writer(f)
@@ -33,5 +33,5 @@ if path.exists('outputs/data/figure_3_supplementary_2c_short.csv'):
 else:
     with open(r'outputs/data/figure_3_supplementary_2c_short.csv', 'w') as f:
         writer = csv.writer(f)
-        writer.writerow(['hotspot_size', 'nspikes', 'integral'])
+        writer.writerow(['hotspot_size', 'integral'])
         writer.writerow(fields)

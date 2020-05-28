@@ -13,7 +13,7 @@ stim.amp1 = -70
 stim.amp2 = -40
 stim.amp3 = -70
 stim.dur1 = 500
-stim.dur2 = 20
+
 stim.dur3 = 100
 
 # Set up recording vectors
@@ -27,12 +27,30 @@ t_vec.record(h._ref_t)
 # Simulation parameters
 dt = 0.025
 h.tstop = 1000 - dt
+h.tuft.gbar_sca = 0
+
+durs = np.array([10, 40])
+
+fig, axes = plt.subplots(2, durs.size, squeeze=False, sharex='all', sharey='all', figsize=(4, 4))
+
+for i in range(durs.size):
+    stim.dur2 = durs[i]
+    h.run()
+
+    axes[0, i].plot(t_vec, tuft_v_vec, color='red')
+    axes[1, i].plot(t_vec, apical_end_v_vec, color='blue')
+
+    axes[0, i].set_title(str(durs[i]))
+
+axes[0, 0].set_xlim(450, 650)
+axes[0, 0].set_ylim(-80, -30)
+plt.savefig('outputs/figures/figure_5a_i.svg')
+
 
 cm = np.array([1, 2.5])
-fig, axes = plt.subplots(2, cm.size, squeeze=False, sharex='all', sharey='all', figsize=(4, 4))
+stim.dur2 = 20
 
-h.tuft.gbar_sca = 0
-maxV = []
+fig, axes = plt.subplots(2, cm.size, squeeze=False, sharex='all', sharey='all', figsize=(4, 4))
 
 for i in range(cm.size):
     h.tuft.cm = cm[i]
@@ -45,4 +63,4 @@ for i in range(cm.size):
 
 axes[0, 0].set_xlim(450, 650)
 axes[0, 0].set_ylim(-80, -30)
-plt.savefig('outputs/figures/figure_5a.svg')
+plt.savefig('outputs/figures/figure_5a_ii.svg')
