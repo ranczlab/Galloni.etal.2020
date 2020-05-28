@@ -114,4 +114,4 @@ axes[0, 0].set_ylim(-60, 60)
 axes[1, 0].set_ylim(0, 100)
 axes[2, 0].set_ylim(0, 0.005)
 
-plt.savefig('outputs/figures/figure_supplementary_1.svg')
+plt.savefig('outputs/figures/figure_4_supplementary_4.svg')

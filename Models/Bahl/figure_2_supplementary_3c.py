@@ -56,4 +56,4 @@ for i in range(lengths.size):
             
 axes[0,0].set_ylim(-150, 70)
 plt.xlim(300, 1200)
-plt.savefig('figure_2_supplementary_3c.svg')
+plt.savefig('outputs/figures/figure_2_supplementary_3c.svg')

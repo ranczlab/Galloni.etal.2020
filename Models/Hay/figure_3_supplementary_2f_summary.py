@@ -22,4 +22,4 @@ longdata = [float(i) for i in longdata]
 plt.plot(multipliers, shortdata, 'k--')
 plt.plot(multipliers, longdata, 'k-')
 plt.xlim(40, 210)
-plt.savefig('outputs/figures/figure_3_supplementary_2f_summary.svg')
+plt.savefig('outputs/figures/figure_3_supplementary_2f.svg')

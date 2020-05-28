@@ -69,7 +69,7 @@ proc biophys() {
 	   
    multiplier = 1
    lowxy = 350
-   highxy = lowxy + 100
+   highxy = lowxy + 200
    LVA_volume = 0.01
    HVA_volume = 0.11 - LVA_volume
    

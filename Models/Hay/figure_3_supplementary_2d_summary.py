@@ -3,14 +3,14 @@ import matplotlib.pyplot as plt
 import numpy as np 
 
 shortdata = []
-with open('outputs/data/figure_supplementary_2d_short.csv') as csvfile:
+with open('outputs/data/figure_3_supplementary_2d_short.csv') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     next(csvreader)
     for row in csvreader:
         shortdata.append(row[1])
 
 longdata = []
-with open('outputs/data/figure_supplementary_2d_long.csv') as csvfile:
+with open('outputs/data/figure_3_supplementary_2d_long.csv') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     next(csvreader)
     for row in csvreader:
@@ -28,4 +28,4 @@ plt.xticks([0.001, 0.01, 0.1], ['100:1', '10:1', '1:10'])
 plt.ylim(0, 0.002)
 plt.xlabel('HVA:LVA ratio')
 plt.ylabel('Integral')
-plt.savefig('outputs/figures/figure_supplementary_2d_summary.svg')
+plt.savefig('outputs/figures/figure_3_supplementary_2d_summary.svg')
