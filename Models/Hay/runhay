@@ -105,3 +105,4 @@ done
 
 python figure_3_supplementary_2f_summary.py
 
+rm -rf outputs/data

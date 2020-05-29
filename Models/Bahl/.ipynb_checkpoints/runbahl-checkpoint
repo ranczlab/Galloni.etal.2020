@@ -31,3 +31,4 @@ python figure_5b.py
 python figure_5c.py
 python figure_5d.py
 
+rm -rf outputs/data
