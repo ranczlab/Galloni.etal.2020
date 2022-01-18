@@ -1,6 +1,6 @@
 # Data and models of length-dependent Ca<sup>2+</sup> electrogenesis in layer 5 pyramidal neurons
 
-This repository reproduces figures from "Apical length governs computational diversity of layer 5 pyramidal neurons" (Galloni et al., 2020) available at [eLife] (https://elifesciences.org/articles/55761).
+This repository reproduces figures from "Apical length governs computational diversity of layer 5 pyramidal neurons" (Galloni et al., 2020) available at eLife (https://elifesciences.org/articles/55761).
 
 ### Prerequisites
 
